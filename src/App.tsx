@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import { List, Avatar } from "antd";
 import { useState } from "react";
+import floor from "./floor.png"
 import "antd/dist/antd.css";
 
 const Cell = styled.div`
-  background: #ffffff;
+  background: url(${floor}); 
   height: 60px;
   border-style: solid;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: -8px;
-  background: "white";
 `;
 
 const BoardBackground = styled.div`
