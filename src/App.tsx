@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { List, Avatar } from "antd";
+import { List, Avatar, Button, Input } from "antd";
 import { useState, useEffect } from "react";
 import floor from "./floor.png";
 import "antd/dist/antd.css";
@@ -26,12 +26,16 @@ const BoardBackground = styled.div`
 `;
 
 const Board = styled.div`
-  margin-top: 80px;
   width: 800px;
   align-items: center;
   justify-content: center;
   display: flex;
 `;
+
+const ChatContainer = styled.div`
+  background: white;
+  width: 800px;
+`
 
 function App() {
   const col = 10;
@@ -66,7 +70,6 @@ function App() {
       <BoardBackground>
         <Board>
           <List
-            style={{ flexDirection: "row" }}
             grid={{ gutter: 0, column: col }}
             dataSource={board}
             renderItem={(item, index) => (
@@ -92,10 +95,20 @@ function App() {
           />
         </Board>
       </BoardBackground>
-      {messages.map((message) => 
-        <div>
-        </div>
-      )}
+      <ChatContainer>
+        <List
+          dataSource={messages}
+          renderItem={(item: any, index: number) => (
+            <>
+              <List.Item style={{ margin: 0 }}>
+                {item.content}
+              </List.Item>
+            </>
+          )}
+        />
+      </ChatContainer>
+      <Input placeholder="Write your message here"/>
+      <Button type="primary"/>
     </div>
   );
 }
