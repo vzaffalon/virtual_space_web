@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { List, Avatar } from "antd";
-import { useState } from "react";
-import floor from "./floor.png"
+import { useState, useEffect } from "react";
+import floor from "./floor.png";
 import "antd/dist/antd.css";
+import socketIOClient from "socket.io-client";
+const ENDPOINT = "http://127.0.0.1:4001";
 
 const Cell = styled.div`
-  background: url(${floor}); 
+  background: url(${floor});
   height: 60px;
   border-style: solid;
   display: flex;
@@ -34,13 +36,30 @@ const Board = styled.div`
 function App() {
   const col = 10;
   const row = 10;
-  const [board, setBoard] = useState(Array(col * row).fill(0));
+  const [board, setBoard] = useState(Array(col * row).fill({}));
+  const [messages, setMessages] = useState([]);
 
   const setUserLocation = (index: number) => {
     let arrayCopy = Array(col * row).fill(0);
     arrayCopy[index] = 1;
     setBoard(arrayCopy);
   };
+
+  useEffect(() => {
+    const socket = socketIOClient(ENDPOINT);
+    socket.on("messages", (messages) => {
+      let arrayCopy = [...board];
+      messages.map((message: any) => (arrayCopy[user.position] = user));
+      setBoard(arrayCopy);
+      setMessages(data);
+    });
+
+    socket.on("users", (users) => {
+      let arrayCopy = [...board];
+      users.map((user: any) => (arrayCopy[user.position] = user));
+      setBoard(arrayCopy);
+    });
+  }, []);
 
   return (
     <div>
@@ -54,7 +73,7 @@ function App() {
               <>
                 <List.Item style={{ margin: 0 }}>
                   <Cell onClick={() => setUserLocation(index)} title={"pica"}>
-                    {item == 1 && (
+                    {item && item.name && (
                       <Avatar
                         style={{
                           backgroundColor: "#f56a00",
@@ -63,7 +82,7 @@ function App() {
                         size="large"
                         gap={4}
                       >
-                        Victor
+                        {item.name}
                       </Avatar>
                     )}
                   </Cell>
@@ -73,6 +92,10 @@ function App() {
           />
         </Board>
       </BoardBackground>
+      {messages.map((message) => 
+        <div>
+        </div>
+      )}
     </div>
   );
 }
