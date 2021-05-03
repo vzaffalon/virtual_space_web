@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { List, Card } from "antd";
 import { useState, useEffect } from "react";
-import { Room } from "../models";
+import { Room } from "../../models";
 
 function App() {
   const [rooms, setRooms] = useState([]);
