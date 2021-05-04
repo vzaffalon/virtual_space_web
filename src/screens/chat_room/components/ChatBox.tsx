@@ -20,7 +20,6 @@ const ChatBox: React.FC<{messages: Messages, user: User, room: Room}> = ({messag
     })
   }
 
-
   return (
     <div>
       <ChatContainer>
@@ -39,7 +38,7 @@ const ChatBox: React.FC<{messages: Messages, user: User, room: Room}> = ({messag
         />
       </ChatContainer>
       <InputContainer>
-        <Input value={message} onChange={(value) => onChange(value)} placeholder="Write your message here" />
+        <Input defaultValue={message} value={message} onChange={(value) => onChange(value)} placeholder="Write your message here" />
         <Button style={{marginLeft: 10}} onClick={() => sendMessage()}  type="primary">Send</Button>
       </InputContainer>
     </div>
