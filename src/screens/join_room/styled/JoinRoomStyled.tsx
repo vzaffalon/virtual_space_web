@@ -4,7 +4,8 @@ const JoinRoomContainer = styled.div`
   display: flex;
   align-items: center;
   flex: 1;
-  margin-top: 100px;
+  height: 100vh;
+  background: #f2e9e5;
   justify-content: center;
   flex-direction: column;
 `;

@@ -19,9 +19,10 @@ const ChatContainer = styled.div`
 
 const BoardBackground = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  background: #f2e9e5;
   align-items: center;
   justify-content: center;
   flex: 1;
