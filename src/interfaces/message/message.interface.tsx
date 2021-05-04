@@ -5,5 +5,5 @@ export interface BaseMessage {
 }
   
 export interface Message extends BaseMessage {
-    _id: number;
+    _id: string;
 }

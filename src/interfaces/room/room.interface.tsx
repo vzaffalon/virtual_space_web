@@ -3,5 +3,5 @@ export interface BaseRoom {
 }
   
 export interface Room extends BaseRoom {
-    _id: number;
+    _id: string;
 }
