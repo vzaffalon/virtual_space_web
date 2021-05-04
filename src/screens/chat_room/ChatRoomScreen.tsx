@@ -29,8 +29,8 @@ function ChatRoomScreen() {
   const { room, user } = location.state;
 
   const setUserLocation = (position: number) => {
-    console.log("user");
-    console.log(user);
+    //console.log("user");
+    //console.log(user);
     user.position = position;
     UserModel.update(user);
   };
@@ -42,7 +42,8 @@ function ChatRoomScreen() {
   };
 
   const getUsers = () => {
-    UserModel.list().then((response: any) => {
+    UserModel.list(room._id).then((response: any) => {
+      console.log(response.data)
       setBoardUsers(response.data);
     });
   };
@@ -61,14 +62,14 @@ function ChatRoomScreen() {
 
   const setUpMessagesSocket = (socket: Socket) => {
     socket.on("messages", (messages: Messages) => {
-      console.log(messages);
+      //console.log(messages);
       setChatMessages(messages);
     });
   };
 
   const setUpUsersSocket = (socket: Socket) => {
     socket.on("users", (users: Users) => {
-      console.log(users);
+      //console.log(users);
       setBoardUsers(users);
     });
   };
@@ -84,11 +85,13 @@ function ChatRoomScreen() {
   }, []);
 
   const findLastMessage = (user_id: string) => {
-    console.log("FIND LAST MESSAGE")
-    console.log(chatMessages)
-    console.log(user_id)
+    //console.log("FIND LAST MESSAGE")
+    //console.log(user_id)
+    //console.log("chat messages")
+    //console.log(chatMessages)
     const messageFound = chatMessages.find((message: Message) => (message.user_id = user_id));
-    console.log(messageFound)
+    //console.log("what message was found")
+    //console.log(messageFound)
     return messageFound;
   };
 
@@ -102,7 +105,7 @@ function ChatRoomScreen() {
           col={col}
           setUserLocation={setUserLocation}
         />
-        <h3 style={{marginTop: 40}}>Chat messages</h3>
+        <h3 style={{marginTop: 20}}>Chat messages</h3>
         <ChatBox messages={chatMessages} user={user} room={room} />
       </BoardBackground>
     </div>

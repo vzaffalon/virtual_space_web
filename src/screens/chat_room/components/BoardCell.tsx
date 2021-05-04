@@ -10,13 +10,6 @@ const BoardCell: React.FC<{
   setUserLocation: Function;
   findLastMessage: Function;
 }> = ({ user, index, setUserLocation, findLastMessage }) => {
-  useEffect(() => {}, []);
-
-  if (user) {
-    console.log("users inside board cell");
-    console.log(user);
-  }
-
   return (
     <Cell onClick={() => setUserLocation(index)} title={""}>
       {user && user.name && (

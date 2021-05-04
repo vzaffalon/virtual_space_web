@@ -5,9 +5,9 @@ import { BaseUser, User } from "../interfaces/user/user.interface";
 
 const model_uri = "users";
 
-const list = async () => {
+const list = async (room_id: string) => {
   return new Promise(async (resolve, reject) => {
-    resolve(axios.get<Users>(`${api.uri}${model_uri}`));
+    resolve(axios.get<Users>(`${api.uri}rooms/${room_id}/${model_uri}`));
   });
 };
 
