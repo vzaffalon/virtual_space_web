@@ -1,7 +1,7 @@
 import { List, Button, Input } from "antd";
 import { useEffect } from "react";
 import { Messages} from "../../../interfaces/message/messages.interface";
-import { ChatContainer} from "../ChatRoomStyled"
+import { ChatContainer} from "../styled/ChatRoomStyled"
 
 const ChatBox: React.FC<{messages: Messages}> = ({messages}) => {
   useEffect(() => {}, []);

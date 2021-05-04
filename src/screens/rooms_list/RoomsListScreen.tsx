@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { List, Card } from "antd";
 import { useState, useEffect } from "react";
 import { Room } from "../../models";
+import RoomList from "./components/RoomList";
 
-function App() {
+function RoomsListScreen() {
   const [rooms, setRooms] = useState([]);
 
   const getRooms = () => {
@@ -17,18 +18,11 @@ function App() {
   }, []);
 
   return (
-    <List
-      grid={{ gutter: 10, column: 4 }}
-      dataSource={rooms}
-      renderItem={(item: any, index: number) => (
-        <>
-          <List.Item style={{ margin: 0 }}>
-            <Card title={item.name}>Click here to enter the room</Card>
-          </List.Item>
-        </>
-      )}
-    />
+    <div>
+      <h3>Choose a room to start interacting with your coworkers</h3>
+      <RoomList rooms={rooms}></RoomList>
+   </div>
   );
 }
 
-export default App;
+export default RoomsListScreen;

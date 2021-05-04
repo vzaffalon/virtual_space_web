@@ -1,15 +1,4 @@
 import styled from "styled-components";
-import floor from "./floor.png";
-
-const Cell = styled.div`
-  background: url(${floor});
-  height: 60px;
-  border-style: 1px solid;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: -8px;
-`;
 
 const ChatMessage = styled.div`
   background: white;
@@ -24,8 +13,17 @@ const ChatContainer = styled.div`
   width: 800px;
 `
 
+const BoardBackground = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+`;
+
 export {
-    Cell,
     ChatMessage,
+    BoardBackground,
     ChatContainer
 }

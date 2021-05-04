@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import floor from "./floor.png";
+import floor from "../../../floor.png";
 
 const Cell = styled.div`
   background: url(${floor});

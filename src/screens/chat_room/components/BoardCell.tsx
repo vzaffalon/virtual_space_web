@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import {
   ChatMessage,
   Cell,
-} from "./BoardCellStyled";
+} from "../styled/BoardCellStyled";
 import { Message } from "../../../interfaces/message/message.interface";
 import { User } from "../../../interfaces/user/user.interface";
 
@@ -11,7 +11,7 @@ const BoardCell: React.FC<{ user: User, index: number, setUserLocation: Function
   useEffect(() => {}, []);
 
   return (
-    <Cell onClick={() => setUserLocation(index)} title={"pica"}>
+    <Cell onClick={() => setUserLocation(index)} title={""}>
       {user && user.name && (
         <div>
           <Avatar

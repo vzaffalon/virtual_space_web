@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import { List, Avatar, Button, Input } from "antd";
 import { useState, useEffect } from "react";
 import { Users } from "../../interfaces/user/users.interface";
 import { User } from "../../interfaces/user/user.interface";
-import "antd/dist/antd.css";
 import socketIOClient from "socket.io-client";
 import { Message } from "../../interfaces/message/message.interface";
+import { BoardBackground } from "./styled/ChatRoomStyled";
+import ChatBox from "./components/ChatBox";
+import Board from "./components/Board";
+
 const ENDPOINT = "http://127.0.0.1:4001";
-import { BoardBackground, Board} from "./ChatRoomStyled"
 
 function ChatRoomScreen() {
   const col = 10;
@@ -55,8 +55,8 @@ function ChatRoomScreen() {
   return (
     <div>
       <BoardBackground>
-        <Board findLastMessage={findLastMessage} setUserLocation={setUserLocation} />
-        <ChatBox/>
+        <Board board={board} findLastMessage={findLastMessage} col={col} setUserLocation={setUserLocation} />
+        <ChatBox messages={messages}/>
       </BoardBackground>
     </div>
   );
