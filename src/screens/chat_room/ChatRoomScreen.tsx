@@ -21,8 +21,8 @@ interface State {
 }
 
 function ChatRoomScreen() {
-  const col = 8;
-  const row = 8;
+  const col = 14;
+  const row = 14;
   const [board, setBoard] = useState(Array(col * row).fill({}));
   const [chatMessages, setChatMessages] = useState<Messages>([]);
   const location = useLocation<State>();
@@ -95,7 +95,7 @@ function ChatRoomScreen() {
   return (
     <div>
       <BoardBackground>
-        <h2 style={{marginTop: 100}}>Click close to a person to talk to them</h2>
+        <h2 style={{marginTop: 40, marginBottom: 20}}>Click close to a person to talk to them</h2>
         <Board
           board={board}
           findLastMessage={findLastMessage}

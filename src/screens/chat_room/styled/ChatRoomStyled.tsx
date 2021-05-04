@@ -22,7 +22,7 @@ const BoardBackground = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #f2e9e5;
+  background: ;
   align-items: center;
   justify-content: center;
   flex: 1;

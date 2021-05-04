@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import floor from "../../../floor.png";
 
 const Cell = styled.div`
-  background: url(${floor});
-  height: 60px;
+  height: 40px;
   border-style: 1px solid;
   display: flex;
   align-items: center;

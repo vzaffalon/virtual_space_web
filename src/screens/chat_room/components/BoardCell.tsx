@@ -1,15 +1,21 @@
 import { Avatar } from "antd";
 import { useEffect } from "react";
-import {
-  ChatMessage,
-  Cell,
-  UserContent,
-} from "../styled/BoardCellStyled";
-import { Message } from "../../../interfaces/message/message.interface";
+import { ChatMessage, Cell, UserContent } from "../styled/BoardCellStyled";
+
 import { User } from "../../../interfaces/user/user.interface";
 
-const BoardCell: React.FC<{ user: User, index: number, setUserLocation: Function, findLastMessage: Function }> = ({ user, index, setUserLocation, findLastMessage }) => {
+const BoardCell: React.FC<{
+  user: User;
+  index: number;
+  setUserLocation: Function;
+  findLastMessage: Function;
+}> = ({ user, index, setUserLocation, findLastMessage }) => {
   useEffect(() => {}, []);
+
+  if (user) {
+    console.log("users inside board cell");
+    console.log(user);
+  }
 
   return (
     <Cell onClick={() => setUserLocation(index)} title={""}>
