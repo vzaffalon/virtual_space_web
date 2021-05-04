@@ -3,6 +3,7 @@ import styled from "styled-components";
 const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
+  margin-bottom: 20px;
 `;
 
 const MessageContentContainer = styled.div`

@@ -39,7 +39,7 @@ const ChatBox: React.FC<{messages: Messages, user: User, room: Room}> = ({messag
       </ChatContainer>
       <InputContainer>
         <Input defaultValue={message} value={message} onChange={(value) => onChange(value)} placeholder="Write your message here" />
-        <Button style={{marginLeft: 10}} onClick={() => sendMessage()}  type="primary">Send</Button>
+        <Button style={{marginLeft: 10, borderColor: "#1BC47D", backgroundColor: "#1BC47D"}} onClick={() => sendMessage()}  type="primary">Send</Button>
       </InputContainer>
     </div>
   );

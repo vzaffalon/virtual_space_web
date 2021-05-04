@@ -12,7 +12,7 @@ const ChatContainer = styled.div`
   background: white;
   width: 800px;
   height: 150px;
-  margin-top: 40px;
+  margin-top: 5px;
   border: 1px solid #d9d9d9;
   margin-bottom: 20px;
 `

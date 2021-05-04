@@ -84,18 +84,25 @@ function ChatRoomScreen() {
   }, []);
 
   const findLastMessage = (user_id: string) => {
-    return chatMessages.find((message: Message) => (message.user_id = user_id));
+    console.log("FIND LAST MESSAGE")
+    console.log(chatMessages)
+    console.log(user_id)
+    const messageFound = chatMessages.find((message: Message) => (message.user_id = user_id));
+    console.log(messageFound)
+    return messageFound;
   };
 
   return (
     <div>
       <BoardBackground>
+        <h2 style={{marginTop: 100}}>Click close to a person to talk to them</h2>
         <Board
           board={board}
           findLastMessage={findLastMessage}
           col={col}
           setUserLocation={setUserLocation}
         />
+        <h3 style={{marginTop: 40}}>Chat messages</h3>
         <ChatBox messages={chatMessages} user={user} room={room} />
       </BoardBackground>
     </div>

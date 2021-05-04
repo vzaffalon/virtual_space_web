@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import {
   ChatMessage,
   Cell,
+  UserContent,
 } from "../styled/BoardCellStyled";
 import { Message } from "../../../interfaces/message/message.interface";
 import { User } from "../../../interfaces/user/user.interface";
@@ -13,21 +14,21 @@ const BoardCell: React.FC<{ user: User, index: number, setUserLocation: Function
   return (
     <Cell onClick={() => setUserLocation(index)} title={""}>
       {user && user.name && (
-        <div>
+        <UserContent>
+          {findLastMessage(user._id) && (
+            <ChatMessage>{findLastMessage(user._id).content}</ChatMessage>
+          )}
           <Avatar
             style={{
               backgroundColor: "#f56a00",
               verticalAlign: "middle",
             }}
-            size="large"
+            size={50}
             gap={4}
           >
             {user.name}
           </Avatar>
-          {findLastMessage(user._id) && (
-            <ChatMessage>{findLastMessage(user._id).content}</ChatMessage>
-          )}
-        </div>
+        </UserContent>
       )}
     </Cell>
   );

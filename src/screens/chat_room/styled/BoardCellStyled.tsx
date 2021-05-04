@@ -11,15 +11,28 @@ const Cell = styled.div`
   margin-bottom: -8px;
 `;
 
+const UserContent = styled.div`
+  position: absolute;
+  z-index: 10;
+`
+
 const ChatMessage = styled.div`
   background: white;
-  height: 80px;
+  padding: 10px;
+  border: 1px;
+  z-index: 1000;
+  position: absolute;
+  margin-left: 60px;
+  min-width: 200px;
+  margin-top: 5px;
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
   display: flex;
 `
 
 export {
     Cell,
-    ChatMessage
+    ChatMessage,
+    UserContent
 }
