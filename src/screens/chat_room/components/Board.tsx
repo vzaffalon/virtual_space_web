@@ -14,6 +14,7 @@ const Board: React.FC<{
   return (
     <BoardStyled>
       <List
+        style={{width: 800, top: 20}}
         grid={{ gutter: 0, column: col }}
         dataSource={board}
         renderItem={(item, index) => (

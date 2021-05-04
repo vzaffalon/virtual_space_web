@@ -17,7 +17,7 @@ function JoinRoomScreen() {
 
   const joinRoom = () => {
     User.create({name: name, position: 0, room_id: room._id}).then((response: any) => {
-      history.push("/room")
+      history.push("/room", { room: room, user: response.data })
     });
   }
 

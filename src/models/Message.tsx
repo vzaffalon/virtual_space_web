@@ -1,7 +1,7 @@
 import api from "./ApiConsts";
 import axios from "axios";
 import { Messages } from "../interfaces/message/messages.interface";
-import { Message } from "../interfaces/message/message.interface";
+import { Message, BaseMessage } from "../interfaces/message/message.interface";
 
 const model_uri = "messages";
 
@@ -11,9 +11,9 @@ const list = async (room_id: string) => {
   });
 };
 
-const create = async (payload: Message) => {
+const create = async (payload: BaseMessage) => {
     return new Promise(async (resolve, reject) => {
-      resolve(axios.post<Message>(`${api.uri}${model_uri}`, payload));
+      resolve(axios.post<BaseMessage>(`${api.uri}${model_uri}`, payload));
     });
 };
 

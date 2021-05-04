@@ -11,7 +11,7 @@ const BoardCell: React.FC<{ user: User, index: number, setUserLocation: Function
   useEffect(() => {}, []);
 
   return (
-    <Cell onClick={() => setUserLocation(index)} title={""}>
+    <Cell onClick={() => setUserLocation(user, index)} title={""}>
       {user && user.name && (
         <div>
           <Avatar

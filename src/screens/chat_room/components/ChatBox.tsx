@@ -1,25 +1,47 @@
 import { List, Button, Input } from "antd";
-import { useEffect } from "react";
-import { Messages} from "../../../interfaces/message/messages.interface";
+import { useState } from "react";
+import { Messages}  from "../../../interfaces/message/messages.interface";
+import { Room } from "../../../interfaces/room/room.interface";
+import { User } from "../../../interfaces/user/user.interface";
+import { Message } from "../../../models";
 import { ChatContainer} from "../styled/ChatRoomStyled"
+import { InputContainer, MessageContentContainer } from "../styled/ChatBoxStyled";
 
-const ChatBox: React.FC<{messages: Messages}> = ({messages}) => {
-  useEffect(() => {}, []);
+const ChatBox: React.FC<{messages: Messages, user: User, room: Room}> = ({messages, user, room}) => {
+  const [message, setMessage] = useState("")
+
+  const onChange = (e: any) => {
+    setMessage(e.target.value)
+  };
+
+  const sendMessage = () => {
+    Message.create({ content: message, user_id: user._id, room_id: room._id }).then((response) => {
+      setMessage("")
+    })
+  }
+
 
   return (
     <div>
       <ChatContainer>
         <List
+          style={{height: 150, overflow: "auto"}}
           dataSource={messages}
           renderItem={(item: any, index: number) => (
             <>
-              <List.Item style={{ margin: 0 }}>{item.content}</List.Item>
+              <List.Item style={{ margin: 0 }}>
+                <MessageContentContainer>
+                  {item.content}
+                </MessageContentContainer>
+              </List.Item>
             </>
           )}
         />
       </ChatContainer>
-      <Input placeholder="Write your message here" />
-      <Button type="primary" />
+      <InputContainer>
+        <Input value={message} onChange={(value) => onChange(value)} placeholder="Write your message here" />
+        <Button style={{marginLeft: 10}} onClick={() => sendMessage()}  type="primary">Send</Button>
+      </InputContainer>
     </div>
   );
 }

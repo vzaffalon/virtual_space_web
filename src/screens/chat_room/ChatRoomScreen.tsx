@@ -16,21 +16,23 @@ const ENDPOINT = "http://127.0.0.1:5000";
 
 interface State {
   room: Room;
+  user: User;
 }
 
 function ChatRoomScreen() {
-  const col = 10;
-  const row = 10;
+  const col = 8;
+  const row = 8;
   const [board, setBoard] = useState(Array(col * row).fill({}));
   const [messages, setMessages] = useState<Messages>([]);
   const [newMessages, setNewMessages] = useState<Messages>([]);
   const location = useLocation<State>();
-  const { room } = location.state;
+  const { room, user } = location.state;
 
-  const setUserLocation = (index: number) => {
-    let arrayCopy = Array(col * row).fill(0);
-    arrayCopy[index] = 1;
-    setBoard(arrayCopy);
+  const setUserLocation = (user: User, position: number) => {
+    user.position = position;
+    UserModel.update(user).then((response: any) => {
+      setBoardUsers(response.data)
+    })
   };
 
   const getMessages = () => {
@@ -90,7 +92,7 @@ function ChatRoomScreen() {
     <div>
       <BoardBackground>
         <Board board={board} findLastMessage={findLastMessage} col={col} setUserLocation={setUserLocation} />
-        <ChatBox messages={messages}/>
+        <ChatBox messages={messages} user={user} room={room}/>
       </BoardBackground>
     </div>
   );
