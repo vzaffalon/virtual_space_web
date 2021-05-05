@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Input, Button } from "antd";
+import { Input, Button, Avatar } from "antd";
 import { JoinRoomContainer } from "./styled/JoinRoomStyled";
 import { useHistory, useLocation } from "react-router-dom";
 import { Room } from "../../interfaces/room/room.interface";
@@ -31,6 +31,16 @@ function JoinRoomScreen() {
   return (
     <JoinRoomContainer>
       <h2>What is your name?</h2>
+      <Avatar
+            style={{
+              backgroundColor: "#f56a00",
+              verticalAlign: "middle",
+            }}
+            size={120}
+            gap={4}
+          >
+            {name}
+      </Avatar>
       <Input style={{width: 300, top: 10}} placeholder="Insert here" onChange={(value) => onChange(value)}></Input>
       <Button style={{top: 30}} type="primary" onClick={() => joinRoom()}>Enter the room</Button>
     </JoinRoomContainer>

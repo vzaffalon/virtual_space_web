@@ -27,12 +27,15 @@ function ChatRoomScreen() {
   const [chatMessages, setChatMessages] = useState<Messages>([]);
   const location = useLocation<State>();
   const { room, user } = location.state;
+  const [logedInUser, setLogedInUser] = useState<User>(user);
 
   const setUserLocation = (position: number) => {
     //console.log("user");
     //console.log(user);
     user.position = position;
-    UserModel.update(user);
+    UserModel.update(user).then((response: any) => {
+      setLogedInUser(response.data)
+    });
   };
 
   const getMessages = () => {
@@ -85,14 +88,7 @@ function ChatRoomScreen() {
   }, []);
 
   const findLastMessage = (user_id: string) => {
-    //console.log("FIND LAST MESSAGE")
-    //console.log(user_id)
-    //console.log("chat messages")
-    //console.log(chatMessages)
-    const messageFound = chatMessages.find((message: Message) => (message.user_id = user_id));
-    //console.log("what message was found")
-    //console.log(messageFound)
-    return messageFound;
+    return chatMessages.find((message: Message) => (message.user_id === user_id));;
   };
 
   return (
@@ -100,13 +96,14 @@ function ChatRoomScreen() {
       <BoardBackground>
         <h2 style={{marginTop: 40, marginBottom: 20}}>Click close to a person to talk to them</h2>
         <Board
+          user={user}
           board={board}
           findLastMessage={findLastMessage}
           col={col}
           setUserLocation={setUserLocation}
         />
         <h3 style={{marginTop: 20}}>Chat messages</h3>
-        <ChatBox messages={chatMessages} user={user} room={room} />
+        <ChatBox messages={chatMessages} user={logedInUser} room={room} />
       </BoardBackground>
     </div>
   );

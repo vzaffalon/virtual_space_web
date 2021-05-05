@@ -1,22 +1,25 @@
+import { Cell, UserContent } from "../styled/BoardCellStyled";
 import { Avatar } from "antd";
-import { useEffect } from "react";
-import { ChatMessage, Cell, UserContent } from "../styled/BoardCellStyled";
-
+import Message from "./Message";
 import { User } from "../../../interfaces/user/user.interface";
 
 const BoardCell: React.FC<{
-  user: User;
+  loggedInUser: User;
+  cellUser: User;
   index: number;
   setUserLocation: Function;
   findLastMessage: Function;
-}> = ({ user, index, setUserLocation, findLastMessage }) => {
+}> = ({ loggedInUser, cellUser, index, setUserLocation, findLastMessage }) => {
   return (
     <Cell onClick={() => setUserLocation(index)} title={""}>
-      {user && user.name && (
+      {cellUser && cellUser.name && (
         <UserContent>
-          {findLastMessage(user._id) && (
-            <ChatMessage>{findLastMessage(user._id).content}</ChatMessage>
-          )}
+          <Message
+            loggedInUser={loggedInUser}
+            cellUser={cellUser}
+            findLastMessage={findLastMessage}
+          ></Message>
+
           <Avatar
             style={{
               backgroundColor: "#f56a00",
@@ -25,7 +28,7 @@ const BoardCell: React.FC<{
             size={50}
             gap={4}
           >
-            {user.name}
+            {cellUser.name}
           </Avatar>
         </UserContent>
       )}

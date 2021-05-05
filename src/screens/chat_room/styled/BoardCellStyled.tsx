@@ -14,7 +14,12 @@ const UserContent = styled.div`
   z-index: 10;
 `
 
+interface ChatMessageStyledProps {
+  opacity: number
+}
+
 const ChatMessage = styled.div`
+  opacity: ${(props: ChatMessageStyledProps) => props.opacity ? props.opacity : 1};
   background: white;
   padding: 10px;
   border: 1px;
