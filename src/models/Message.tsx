@@ -7,7 +7,7 @@ const model_uri = "messages";
 
 const list = async (room_id: string) => {
   return new Promise(async (resolve, reject) => {
-    resolve(axios.get<Messages>(`${api.uri}rooms/${room_id}/${model_uri}`));
+    resolve(axios.get<Messages>(`${api.uri}${model_uri}?room_id=${room_id}`));
   });
 };
 
