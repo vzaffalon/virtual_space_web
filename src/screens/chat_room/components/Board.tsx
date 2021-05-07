@@ -1,16 +1,17 @@
 import { List } from "antd";
-import { useEffect } from "react";
 import { Board as BoardStyled } from "../styled/BoardStyled";
 import BoardCell from "./BoardCell";
 import { User } from "../../../interfaces/user/user.interface";
+import { Messages } from "../../../interfaces/message/messages.interface";
 
 const Board: React.FC<{
   user: User,
   board: Array<any>;
   col: number;
-  findLastMessage: Function;
+  messagesQueue: Messages;
   setUserLocation: Function;
-}> = ({ user, board, col, findLastMessage, setUserLocation }) => {
+  removeFromQueue: Function;
+}> = ({ user, board, col, setUserLocation, messagesQueue, removeFromQueue  }) => {
   return (
     <BoardStyled>
       <List
@@ -24,8 +25,9 @@ const Board: React.FC<{
                 loggedInUser={user}
                 cellUser={item}
                 index={index}
-                findLastMessage={findLastMessage}
                 setUserLocation={setUserLocation}
+                messagesQueue={messagesQueue}
+                removeFromQueue={removeFromQueue}
               />
             </List.Item>
           </>

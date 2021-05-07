@@ -25,13 +25,22 @@ function ChatRoomScreen() {
   const row = 14;
   const [board, setBoard] = useState(Array(col * row).fill({}));
   const [chatMessages, setChatMessages] = useState<Messages>([]);
+  const [messagesQueue, setMessagesQueue] = useState<Messages>([]);
   const location = useLocation<State>();
   const { room, user } = location.state;
   const [logedInUser, setLogedInUser] = useState<User>(user);
 
+  const addToQueue = (message: Message) => {
+    const newQueue = [...messagesQueue, message]
+    setMessagesQueue(newQueue)
+  }
+
+  const removeFromQueue = (message: Message) => {
+    const newQueue = [...messagesQueue].filter((m: Message) => message._id != m._id)
+    setMessagesQueue(newQueue)
+  }
+
   const setUserLocation = (position: number) => {
-    //console.log("user");
-    //console.log(user);
     user.position = position;
     UserModel.update(user).then((response: any) => {
       setLogedInUser(response.data)
@@ -46,7 +55,6 @@ function ChatRoomScreen() {
 
   const getUsers = () => {
     UserModel.list(room._id).then((response: any) => {
-      console.log(response.data)
       setBoardUsers(response.data);
     });
   };
@@ -65,14 +73,16 @@ function ChatRoomScreen() {
 
   const setUpMessagesSocket = (socket: Socket) => {
     socket.on("messages", (messages: Messages) => {
-      //console.log(messages);
-      setChatMessages(messages);
+      setChatMessages(messages)
+    });
+
+    socket.on("message", (message: Message) => {
+      addToQueue(message)
     });
   };
 
   const setUpUsersSocket = (socket: Socket) => {
     socket.on("users", (users: Users) => {
-      //console.log(users);
       setBoardUsers(users);
     });
   };
@@ -87,18 +97,16 @@ function ChatRoomScreen() {
     };
   }, []);
 
-  const findLastMessage = (user_id: string) => {
-    return chatMessages.find((message: Message) => (message.user_id === user_id));;
-  };
-
   return (
     <div>
       <BoardBackground>
-        <h2 style={{marginTop: 40, marginBottom: 20}}>Click close to a person to talk to them</h2>
+        <h2 style={{marginTop: 50, marginBottom: 5}}>Welcome to {room.name}</h2>
+        <h3 style={{marginTop: 10, marginBottom: 20}}>Click close to a person to talk to them</h3>
         <Board
           user={user}
           board={board}
-          findLastMessage={findLastMessage}
+          messagesQueue={messagesQueue}
+          removeFromQueue={removeFromQueue}
           col={col}
           setUserLocation={setUserLocation}
         />

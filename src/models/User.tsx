@@ -12,10 +12,15 @@ const list = async (room_id: string) => {
 };
 
 const create = async (payload: BaseUser) => {
-    console.log(payload)
     return new Promise(async (resolve, reject) => {
       resolve(axios.post<BaseUser>(`${api.uri}${model_uri}`, payload));
     });
+};
+
+const remove = async (payload: User) => {
+  return new Promise(async (resolve, reject) => {
+    resolve(axios.delete<User>(`${api.uri}${model_uri}/${payload._id}`));
+  });
 };
 
 const update = async (payload: User) => {
@@ -27,5 +32,6 @@ const update = async (payload: User) => {
 export default {
   list,
   update,
-  create
+  create,
+  remove
 };

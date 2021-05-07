@@ -20,7 +20,7 @@ const RoomList: React.FC<{
       renderItem={(item: any, index: number) => (
         <>
           <List.Item onClick={() => selectRoom(item)}>
-            <Card style={{height: 240}} title={item.name}>Click here to enter the room</Card>
+            <Card bodyStyle={{  cursor: "pointer" }} style={{height: 240}} title={item.name}>Click here to enter the room</Card>
           </List.Item>
         </>
       )}

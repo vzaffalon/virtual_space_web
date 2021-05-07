@@ -5,6 +5,7 @@ const Cell = styled.div`
   border-style: 1px solid;
   display: flex;
   align-items: center;
+  cursor: pointer;
   justify-content: center;
   margin-bottom: -8px;
 `;
