@@ -1,5 +1,5 @@
 import { List, Button, Input } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Messages}  from "../../../interfaces/message/messages.interface";
 import { Room } from "../../../interfaces/room/room.interface";
 import { User } from "../../../interfaces/user/user.interface";
@@ -19,6 +19,19 @@ const ChatBox: React.FC<{messages: Messages, user: User, room: Room}> = ({messag
       setMessage("")
     })
   }
+
+  const listener = (event: any) => {
+    if (event.code === "Enter" || event.code === "NumpadEnter") {
+      sendMessage();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, []);
 
   return (
     <div>

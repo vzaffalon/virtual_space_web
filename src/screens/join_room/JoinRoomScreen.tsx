@@ -25,7 +25,17 @@ function JoinRoomScreen() {
       setName(e.target.value)
   };
 
+  const listener = (event: any) => {
+    if (event.code === "Enter" || event.code === "NumpadEnter") {
+      joinRoom();
+    }
+  };
+
   useEffect(() => {
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
   }, []);
 
   return (
