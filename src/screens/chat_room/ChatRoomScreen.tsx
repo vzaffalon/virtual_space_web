@@ -11,9 +11,9 @@ import { useLocation } from "react-router-dom";
 import ChatBox from "./components/ChatBox";
 import Board from "./components/Board";
 import { Room } from "../../interfaces/room/room.interface";
+import api from "../../models/ApiConsts";
 
-const ENDPOINT = "http://127.0.0.1:5000";
-const socket: Socket = socketIOClient(ENDPOINT);
+const socket: Socket = socketIOClient(api.uri);
 
 interface State {
   room: Room;
