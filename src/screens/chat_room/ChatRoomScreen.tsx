@@ -101,7 +101,7 @@ function ChatRoomScreen() {
   return (
     <div>
       <BoardBackground>
-        <h2 style={{marginTop: 50, marginBottom: 5}}>Welcome to {room.name}</h2>
+        <h2 style={{marginTop: 140, marginBottom: 5}}>Welcome to {room.name}</h2>
         <h3 style={{marginTop: 10, marginBottom: 20}}>Click close to a person to talk to them</h3>
         <Board
           user={user}
