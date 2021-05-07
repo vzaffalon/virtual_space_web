@@ -36,7 +36,7 @@ function ChatRoomScreen() {
   }
 
   const removeFromQueue = (message: Message) => {
-    const newQueue = [...messagesQueue].filter((m: Message) => message._id != m._id)
+    const newQueue = [...messagesQueue].filter((m: Message) => message._id !== m._id)
     setMessagesQueue(newQueue)
   }
 
