@@ -94,6 +94,7 @@ function ChatRoomScreen() {
     return () => {
       socket.off("messages", () => {});
       socket.off("users", () => {});
+      UserModel.remove(logedInUser);
     };
   }, []);
 
