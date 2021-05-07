@@ -3,11 +3,18 @@
 ### Description
 Virtual room Application where people can enter in chat in chat rooms and talk to each other.
 
+Link to application: https://adoring-ramanujan-6b9822.netlify.app/
+
 ## Rooms List
 
 ## Join Room
 
 ## Room
+
+### Project URL and CI/CD
+
+This project is deployed with netifly and connect to the master branch in github.
+Every commit will redeploy the application in netifly.
 
 ### Executing the project:
 
